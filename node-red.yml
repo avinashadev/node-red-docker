@@ -1,0 +1,22 @@
+version: '2'
+services:
+  node-red:
+    restart: unless-stopped
+    build: node-red
+    user: "root"
+    volumes:
+      - "${TTN_DASHBOARD_DATA}/var/lib/node-red:/data"
+    ports:
+      - "1880:1880"
+version: '3'
+
+services:
+  nodered:
+    restart: always
+    user: "root"
+    image: nodered/node-red-docker:latest
+    container_name: nodered
+    volumes:
+      - ./noderedvolume:/data
+    ports:
+      - "1880:1880"
